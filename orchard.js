@@ -51,8 +51,14 @@ const pinkPrice = .55
 
 // CODE HERE
 
-
-
+// I make a for loop (took as a condition length of fujiAcres because it was first, 
+// but actually all of them have 7 elements in array). Each iteration calculates 
+// total from all three kinds that binds by index.
+let totalAcres = 0
+for (i=0; i<fujiAcres.length; i++) {
+    totalAcres += fujiAcres[i]+galaAcres[i]+pinkAcres[i]
+}
+console.log(totalAcres)
 
 
 // PROBLEM 2
@@ -68,9 +74,12 @@ const pinkPrice = .55
 */
 
 // CODE HERE
+// just divided total by the amount of day which I took from one of the 
+// apple kind. I could took just a number 7, but who knows, maybe later
+// we'll decide tha the week is supposed to containt more days :D:D:D
 
-
-
+let averageDailyAcres = totalAcres/fujiAcres.length
+console.log(averageDailyAcres)
 
 
 // PROBLEM 3
@@ -107,7 +116,13 @@ let days = 0
 
 // CODE HERE
 
-
+// Just substracting our average picking from the amount of acres that still left and trying not to forget
+// to count days. 
+while (acresLeft > 0) {
+    acresLeft -= averageDailyAcres
+    days++
+}
+console.log(days)
 
 // PROBLEM 4
 
@@ -135,13 +150,26 @@ let days = 0
 
 // CODE HERE
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
+//We iterate each day of the week and throughout multiplication 
+// get a number of tons. Each of them are pushed to our new array. 
 
+let fujiTons = []
+for (let i in fujiAcres) {
+    fujiTons.push(fujiAcres[i]*6.5)
+  }
+console.log(fujiTons)
 
+let galaTons = []
+for (let i in galaAcres) {
+    galaTons.push(galaAcres[i]*6.5)
+  }
+console.log(galaTons)
 
-
+let pinkTons = []
+for (let i in pinkAcres) {
+    pinkTons.push(pinkAcres[i]*6.5)
+  }
+console.log(pinkTons)
 
 
 // PROBLEM 5
@@ -162,13 +190,26 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
+//We're going through the week by day and multiplicating daily amount of tons to pounds.
+// We are also adding a result to our total variable. 
 
+let fujiPounds = 0
+fujiTons.forEach(i => {
+    fujiPounds += i*2000;
+})
+console.log(fujiPounds)
 
+let galaPounds = 0
+galaTons.forEach(i => {
+    galaPounds += i*2000;
+})
+console.log(galaPounds)
 
-
+let pinkPounds = 0
+pinkTons.forEach(i => {
+    pinkPounds += i*2000;
+})
+console.log(pinkPounds)
 
 
 // PROBLEM 6
@@ -189,9 +230,14 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+// Miltiplying the whole pounds amount to the price getting the whole profit.
+
+let fujiProfit = fujiPounds*fujiPrice
+console.log(`The profit of Fuji sellings is $${fujiProfit}`)
+let galaProfit =galaPounds*galaPrice
+console.log(`The profit of Fuji sellings is $${galaProfit}`)
+let pinkProfit = pinkPounds*pinkPrice
+console.log(`The profit of Fuji sellings is $${pinkProfit}`)
 
 
 
@@ -209,3 +255,8 @@ let days = 0
 */
 
 // CODE HERE
+
+// The hardest one! I don't even know how I've done it after all those way easier tasks. :D:D:D
+
+totalProfit = fujiProfit+galaProfit+pinkProfit
+console.log(`The total proffit is going to be $${totalProfit}`)
